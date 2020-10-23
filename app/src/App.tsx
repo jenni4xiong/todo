@@ -16,7 +16,6 @@ interface ITodo {
 //   tag: string[]
 // }
 
-
 const App = (): JSX.Element => {
   const [value, setValue] = useState<string>('')
   //need to put the [] after ITodo because it needs to show that it is an array of ITodo objects
