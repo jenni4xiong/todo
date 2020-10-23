@@ -46,7 +46,13 @@ const App = (): JSX.Element => {
     setTodos(updatedTodos)
   }
 
-  console.log(todos)
+  const removeTodo = (index: number): void => {
+    const updatedTodos: ITodo[] = [...todos]
+    console.log('index to remove', index)
+    updatedTodos.splice(index, 1)
+    setTodos(updatedTodos)
+  }
+
   return (
     <Fragment>
       <h1>To Do List</h1>
@@ -58,9 +64,14 @@ const App = (): JSX.Element => {
       <section>
         {todos.map((todo: ITodo, index: number) => (
           <div key={index}>
-            {index + 1}. {todo.text}
+            {index + 1}.
             {' '}
-            <button type="button" onClick={() => toggleCompleteTodo(index)}>{todo.complete ? 'completed' : 'incomplete'}</button>
+            <span style={{ textDecoration: todo.complete ? 'line-through' : 'none' }}>
+              {todo.text}
+            </span>
+            {' '}
+            <button type="button" onClick={() => toggleCompleteTodo(index)}>{todo.complete ? 'incomplete' : 'complete'}</button>
+            <button type="button" onClick={() => removeTodo(index)}>Delete</button>
           </div>
         ))}
       </section>
