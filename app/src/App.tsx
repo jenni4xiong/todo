@@ -77,4 +77,5 @@ const App = (): JSX.Element => {
     </Fragment>
   )
 }
+
 export default App;
