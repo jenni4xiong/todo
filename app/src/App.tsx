@@ -38,7 +38,7 @@ const App = (): JSX.Element => {
     //set newTodos
     setTodos(newTodos)
   }
-  console.log('todos', todos)
+  console.log(todos)
   return (
     <Fragment>
       <h1>To Do List</h1>
@@ -46,6 +46,9 @@ const App = (): JSX.Element => {
         <input type="text" value={value} onChange={handleChange} required />
         <button type="submit">Add To Do</button>
       </form>
+      <section>
+        {todos.map((todo: ITodo, index: number) => <div key={index}>{index + 1}. {todo.text}</div>)}
+      </section>
     </Fragment>
   )
 }
