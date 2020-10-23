@@ -38,16 +38,31 @@ const App = (): JSX.Element => {
     //set newTodos
     setTodos(newTodos)
   }
+
+  const toggleCompleteTodo = (index: number): void => {
+    //make a clone and do not alter previous state
+    const updatedTodos: ITodo[] = [...todos]
+    updatedTodos[index].complete = !updatedTodos[index].complete
+    setTodos(updatedTodos)
+  }
+
   console.log(todos)
   return (
     <Fragment>
       <h1>To Do List</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" value={value} onChange={handleChange} required />
+        {' '}
         <button type="submit">Add To Do</button>
       </form>
       <section>
-        {todos.map((todo: ITodo, index: number) => <div key={index}>{index + 1}. {todo.text}</div>)}
+        {todos.map((todo: ITodo, index: number) => (
+          <div key={index}>
+            {index + 1}. {todo.text}
+            {' '}
+            <button type="button" onClick={() => toggleCompleteTodo(index)}>{todo.complete ? 'completed' : 'incomplete'}</button>
+          </div>
+        ))}
       </section>
     </Fragment>
   )
